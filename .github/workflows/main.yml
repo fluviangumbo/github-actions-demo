@@ -1,0 +1,26 @@
+name: Lint workflow
+
+on:
+pull_request:
+  branches:
+  - develop
+  - staging
+
+jobs:
+  test:
+    run-on: ubuntu-latest
+
+    steps:
+    - name: Checkout branch
+      uses: actions/checkout@v1
+
+    - name: Use node 21
+      uses: actions/setup-node@v1
+      with:
+        node-version: 21.x
+    
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Run Linter
+      run: npm run lint
